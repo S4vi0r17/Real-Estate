@@ -15,16 +15,17 @@
   p {
     margin: 0;
   }
-  .price {
-    color: $verde;
-    font-weight: $bold;
-    font-size: 3rem;
-  }
+}
+.price {
+  color: $verde;
+  font-weight: $bold;
+  font-size: 3rem;
 }
 .feature-icons {
   display: flex;
   list-style: none;
   padding: 0;
+  max-width: 40rem;
 
   li {
     flex: 1;
@@ -36,5 +37,15 @@
     p {
       font-weight: $black;
     }
+  }
+}
+.property-summary {
+  display: grid;
+  place-items: center;
+  img {
+    margin: 1rem;
+  }
+  p {
+    margin: 1rem;
   }
 }
