@@ -3,5 +3,10 @@
   margin-bottom: calc($separacion / 2);
 }
 .content-center {
-  max-width: 800px;
+  max-width: 800rem;
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
 }
