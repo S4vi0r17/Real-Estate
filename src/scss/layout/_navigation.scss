@@ -1,6 +1,7 @@
 .bar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-top: 2rem;
   @include tablet {
     flex-direction: row;
@@ -9,9 +10,15 @@
 }
 
 .navigation {
+  visibility: hidden; // display: none;
+  opacity: 0;
+  transition: visibility 0.3s ease-in-out, opacity 0.5s linear;
+
   @include tablet {
     display: flex;
     align-items: center;
+    opacity: 1;
+    visibility: visible;
   }
   a {
     color: $blanco;
@@ -27,4 +34,25 @@
       }
     }
   }
+}
+
+// Menu hamburguesa
+
+.mobile-menu {
+  @include tablet {
+    display: none;
+  }
+  img {
+    width: 5rem;
+  }
+}
+
+.show {
+  // display: flex;
+  // flex-direction: column;
+  // @include tablet {
+  //   flex-direction: row;
+  // }
+  visibility: visible;
+  opacity: 1;
 }
