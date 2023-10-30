@@ -1,9 +1,10 @@
 <?php
-include './includes/templates/header.php';
+require './includes/functions.php';
+addTemplate('header');
 ?>
 <main class="container section">
   <h1>Title</h1>
 </main>
 <?php
-include './includes/templates/footer.php';
+addTemplate('footer');
 ?>

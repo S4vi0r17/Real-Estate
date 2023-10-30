@@ -1,6 +1,9 @@
 <?php
-$home = true;
-include './includes/templates/header.php';
+// requiere para codigo mas importante
+require './includes/functions.php';
+
+addTemplate('header', $home = true);
+
 ?>
 <main class="container section">
   <h1>More About Us</h1>
@@ -203,5 +206,5 @@ include './includes/templates/header.php';
 </div>
 
 <?php
-include './includes/templates/footer.php';
+addTemplate('footer');
 ?>

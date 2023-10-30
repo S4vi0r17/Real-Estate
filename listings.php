@@ -1,5 +1,6 @@
 <?php
-include './includes/templates/header.php';
+require './includes/functions.php';
+addTemplate('header');
 ?>
 <main class="container section">
   <h2>Homes and Apartments for Sale</h2>
@@ -187,5 +188,5 @@ include './includes/templates/header.php';
   </div>
 </main>
 <?php
-include './includes/templates/footer.php';
+addTemplate('footer');
 ?>
