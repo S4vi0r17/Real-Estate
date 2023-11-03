@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Real State</title>
-    <link rel="stylesheet" href="/REAL-ESTATE/build/css/app.css" />
+    <link rel="stylesheet" href="/build/css/app.css" />
     <!-- Puede que pierda estilos, por eso se pone la ruta absoluta. -->
 </head>
 
@@ -13,10 +13,10 @@
     <header class="header <?php echo $home ? 'home' : ''; ?>">
         <div class="container header-content">
             <div class="bar">
-                <a href="/REAL-ESTATE/index.php"><img src="build/img/Real_Estate.svg" alt="logo" /></a>
+                <a href="/"><img src="/build/img/Real_Estate.svg" alt="logo" /></a>
 
                 <div class="mobile-menu">
-                    <img src="build/img/barras.svg" alt="menu-bar">
+                    <img src="/build/img/barras.svg" alt="menu-bar">
                 </div>
 
                 <nav class="navigation">
@@ -24,6 +24,9 @@
                     <a href="listings.php">Listings</a>
                     <a href="blog.php">Blog</a>
                     <a href="contact.php">Contact</a>
+                    <a href="">
+                        <img src="/build/img/dark-mode.svg" alt="dark mode icon">
+                    </a>
                 </nav>
             </div>
             <?php if ($home) { ?>
