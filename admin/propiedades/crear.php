@@ -1,5 +1,15 @@
 <?php
+
+// Base de datos
+
+require '../../includes/config/database.php';
+
+$db = conectarDB();
+
+var_dump($db);
+
 require '../../includes/functions.php';
+
 addTemplate('header');
 ?>
 <main class="container section">
