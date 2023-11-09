@@ -5,7 +5,7 @@ addTemplate('header');
 <main class="container section">
     <h1>Crear</h1>
 
-    <a href="/admin/index.php" class="btn btn-green">Volver</a>
+    <a href="/Real-Estate/admin/index.php" class="btn btn-green">Volver</a>
 
     <form action="" class="form">
         <fieldset>
