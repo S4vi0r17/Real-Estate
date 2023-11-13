@@ -58,7 +58,9 @@ addTemplate('header');
                     <td>$<?php echo $propiedad["precio"]; ?></td>
                     <td>
                         <a href="" class="btn-red-block">Eliminar</a>
-                        <a href="" class="btn-green-block">Actualizar</a>
+                        <a 
+                        href="/Real-Estate/admin/propiedades/actualizar.php?id=<?php echo $propiedad["id"]; ?>" 
+                        class="btn-green-block">Actualizar</a>
                     </td>
                 <?php endwhile; ?>
 
