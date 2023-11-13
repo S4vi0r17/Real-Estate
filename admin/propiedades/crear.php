@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($resultado) {
             // echo "Insertado correctamente";
             // redireccionar al usuario
-            header("Location: /Real-Estate/admin/index.php");
+            header("Location: /Real-Estate/admin/index.php?mensaje=1");
         }
     }
 }
