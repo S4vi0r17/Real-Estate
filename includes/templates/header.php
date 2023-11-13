@@ -24,9 +24,7 @@
                     <a href="listings.php">Listings</a>
                     <a href="blog.php">Blog</a>
                     <a href="contact.php">Contact</a>
-                    <a href="">
-                        <img src="/Real-Estate/build/img/dark-mode.svg" alt="dark mode icon">
-                    </a>
+                    <img class="dark-mode-btn" src="/Real-Estate/build/img/dark-mode.svg" alt="dark mode icon">
                 </nav>
             </div>
             <?php if ($home) { ?>

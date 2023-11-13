@@ -12,11 +12,16 @@
 .navigation {
   visibility: hidden; // display: none;
   opacity: 0;
-  transition: visibility 0.3s ease-in-out, opacity 0.5s linear;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s linear, height 0.5s linear;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 0;
 
   @include tablet {
-    display: flex;
-    align-items: center;
+    flex-direction: row;
+    text-align: center;
     opacity: 1;
     visibility: visible;
   }
@@ -29,11 +34,21 @@
     @include tablet {
       margin-right: 2rem;
       font-size: 1.8rem;
-      &:last-of-type {
-        margin-right: 0;
-      }
     }
   }
+  .dark-mode-btn {
+    display: block;
+    width: 3rem;
+    filter: invert(100%);
+    &:hover {
+      cursor: pointer;
+      filter: invert(0%);
+    }
+  }
+}
+
+.footer .navigation{
+  justify-content: start;
 }
 
 // Menu hamburguesa
@@ -55,4 +70,5 @@
   // }
   visibility: visible;
   opacity: 1;
+  height: auto;
 }
