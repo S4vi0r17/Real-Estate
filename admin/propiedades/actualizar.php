@@ -24,6 +24,21 @@ require '../../includes/config/database.php';
 
 $db = conectarDB();
 
+// Obetener los datos de la propiedad
+$consulta = "SELECT * FROM propiedades WHERE id = {$id}";
+$resultado = mysqli_query($db, $consulta);
+$propiedad = mysqli_fetch_assoc($resultado); // No hay problemas si se mezclan las variables porque...
+
+// echo "<pre>";
+
+// var_dump($propiedad);
+
+// echo "</pre>";
+
+
+
+
+
 // Consulta para obtener los vendedores 
 $cosulta = "SELECT * FROM vendedores";
 $resultado = mysqli_query($db, $cosulta);
@@ -34,20 +49,18 @@ $resultado = mysqli_query($db, $cosulta);
 $errores = [];
 
 
-$titulo = "";
-$precio = "";
-$descripcion = "";
-$habitaciones = "";
-$wc = "";
-$estacionamiento = "";
-$Vendedores_id = "";
+$titulo = $propiedad["titulo"];
+$precio = $propiedad["precio"];
+$descripcion = $propiedad["descripcion"];
+$habitaciones = $propiedad["habitaciones"];
+$wc = $propiedad["wc"];
+$estacionamiento = $propiedad["estacionamiento"];
+$Vendedores_id = $propiedad["Vendedores_id"];
+$imagenPropiedad = $propiedad["imagen"];
 
 
 // Ejeciutar el codigo despues de que el usuario envia el formulario
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    $numero = "1Hola";
-    $numero2 = 1;
 
 
     // echo "<pre>";
@@ -62,18 +75,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // echo "</pre>";
 
-    
-    
-    $titulo = mysqli_real_escape_string( $db,  $_POST["titulo"]);
-    $precio = mysqli_real_escape_string( $db, $_POST["precio"]);
-    $descripcion = mysqli_real_escape_string( $db, $_POST["descripcion"]);
-    $habitaciones = mysqli_real_escape_string( $db, $_POST["habitaciones"]);
-    $wc = mysqli_real_escape_string( $db, $_POST["wc"]);
-    $estacionamiento = mysqli_real_escape_string( $db, $_POST["estacionamiento"]);
-    $Vendedores_id = mysqli_real_escape_string( $db, $_POST["vendedor"]);
+
+
+    $titulo = mysqli_real_escape_string($db,  $_POST["titulo"]);
+    $precio = mysqli_real_escape_string($db, $_POST["precio"]);
+    $descripcion = mysqli_real_escape_string($db, $_POST["descripcion"]);
+    $habitaciones = mysqli_real_escape_string($db, $_POST["habitaciones"]);
+    $wc = mysqli_real_escape_string($db, $_POST["wc"]);
+    $estacionamiento = mysqli_real_escape_string($db, $_POST["estacionamiento"]);
+    $Vendedores_id = mysqli_real_escape_string($db, $_POST["vendedor"]);
     $creado = date("Y/m/d");
-    
-    
+
+
     // Asignar files hacia una variable
     $imagen = $_FILES["imagen"];
 
@@ -99,9 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!$Vendedores_id) {
         $errores[] = "Debes añadir un vendedor";
     }
-    if (!$imagen["name"] || $imagen["error"]) {
-        $errores[] = "Debes añadir una imagen";
-    }
 
     // Validar por tamaño (1mb maximo)
     $medida = 1000 * 1000; // 1mb
@@ -118,6 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Revisar que el arreglo de errores este vacio
     if (empty($errores)) {
 
+
         // Subida de archivos
         $carpetaImagenes = '../../imagenes/';
 
@@ -125,19 +136,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             mkdir($carpetaImagenes);
         }
 
-        // Extraer la extension de la imagen
-        $extensionImagen = explode("/", $imagen["type"]);
+        
+        $nombreImagen = "";
+
+        if ($imagen["name"]) {
+            // Eliminar la imagen previa
+            unlink($carpetaImagenes . $propiedad["imagen"]);
 
 
-        // Generar un nombre unico
-        $nombreImagen = md5(uniqid(rand(), true)) . "." . $extensionImagen[1];
+            // Extraer la extension de la imagen
+            $extensionImagen = explode("/", $imagen["type"]);
 
-        // Subir la imagen
-        move_uploaded_file($imagen["tmp_name"], $carpetaImagenes . $nombreImagen);
+
+            // Generar un nombre unico
+            $nombreImagen = md5(uniqid(rand(), true)) . "." . $extensionImagen[1];
+
+            // Subir la imagen
+            move_uploaded_file($imagen["tmp_name"], $carpetaImagenes . $nombreImagen);
+        }else{
+            $nombreImagen = $propiedad["imagen"];
+        }
+
+        
+
 
         // Insertar en la base de datos
 
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, Vendedores_id) VALUES ('$titulo', '$precio','$nombreImagen' , '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$Vendedores_id')";
+        $query = "UPDATE propiedades SET titulo = '{$titulo}', precio = '{$precio}', imagen = '{$nombreImagen}', descripcion = '{$descripcion}', habitaciones = {$habitaciones}, wc = {$wc}, estacionamiento = {$estacionamiento}, Vendedores_id = {$Vendedores_id} WHERE id = {$id}";
 
         // echo $query;
 
@@ -146,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($resultado) {
             // echo "Insertado correctamente";
             // redireccionar al usuario
-            header("Location: /Real-Estate/admin/index.php?mensaje=1");
+            header("Location: /Real-Estate/admin/index.php?mensaje=2");
         }
     }
 }
@@ -167,7 +192,7 @@ addTemplate('header');
 
     <a href="/Real-Estate/admin/index.php" class="btn btn-green">Volver</a>
     <!-- enctype="multipart/form-data" para archivos -->
-    <form method="POST" action="/Real-Estate/admin/propiedades/crear.php" class="form" enctype="multipart/form-data">
+    <form method="POST" class="form" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 
@@ -179,6 +204,8 @@ addTemplate('header');
 
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
+
+            <img class="imagen-update" src="/Real-Estate/imagenes/<?php echo $imagenPropiedad; ?>" alt="Imagen de la propiedad" class="imagen-small">
 
             <label for="descripcion">Descripcion:</label>
             <textarea name="descripcion" id="descripcion" cols="30" rows="10"><?php echo $descripcion; ?></textarea>
