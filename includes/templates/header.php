@@ -27,8 +27,6 @@
                     <img class="dark-mode-btn" src="/Real-Estate/build/img/dark-mode.svg" alt="dark mode icon">
                 </nav>
             </div>
-            <?php if ($home) { ?>
-                <h1>Exclusive Luxury Homes and Apartments for Sale</h1>
-            <?php } ?>
+            <?php echo $home ? "<h1>Exclusive Luxury Homes and Apartments for Sale</h1>" : ""; ?>
         </div>
     </header>

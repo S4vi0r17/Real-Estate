@@ -1,35 +1,57 @@
 <?php
+
+$id = $_GET["id"];
+
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if (!$id) {
+  header("Location: /Real-Estate/index.php");
+}
+
+// Base de datos
+require 'includes\config\database.php';
+
+$db = conectarDB();
+
+// Obtener los datos de la propiedad
+$consulta = "SELECT * FROM propiedades WHERE id = {$id}";
+$resultado = mysqli_query($db, $consulta);
+
+if (!$resultado->num_rows) {
+  header("Location: /Real-Estate/index.php");
+}
+
+$propiedad = mysqli_fetch_assoc($resultado); // Todo el contenido del registro
+
+// var_dump($propiedad);
+
+
 require './includes/functions.php';
 addTemplate('header');
 ?>
 <main class="container section content-center">
-  <h1>House for Sale in Front of the Forest</h1>
-  <picture>
-    <source srcset="build/img/destacada.webp" type="image/webp" />
-    <source srcset="build/img/destacada.jpg" type="image/jpg" />
-    <img loading="lazy" src="build/img/destacada.jpg" alt="Property image" />
-  </picture>
+  <h1><?php echo $propiedad["titulo"] ?></h1>
+
+  <img loading="lazy" src="/Real-Estate/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Property image" />
+
   <div class="property-summary">
-    <p class="price">$4,000,000</p>
+    <p class="price"><?php echo $propiedad["precio"] ?></p>
     <ul class="feature-icons">
       <li>
         <img class="icon" loading="lazy" src="build/img/icono_wc.svg" alt="Bathroom Icon" />
-        <p>4</p>
+        <p><?php echo $propiedad["wc"] ?></p>
       </li>
       <li>
         <img class="icon" loading="lazy" src="build/img/icono_estacionamiento.svg" alt="Parking Icon" />
-        <p>3</p>
+        <p><?php echo $propiedad["estacionamiento"] ?></p>
       </li>
       <li>
         <img class="icon" loading="lazy" src="build/img/icono_dormitorio.svg" alt="Bedrooms Icon" />
-        <p>5</p>
+        <p><?php echo $propiedad["habitaciones"] ?></p>
       </li>
     </ul>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum facilis
-      saepe corporis, nihil eius expedita repellendus possimus maiores.
-      Rerum tempore totam quis voluptatem earum error fuga tenetur repellat
-      quam voluptates.
+      <?php echo $propiedad["descripcion"] ?>
     </p>
     <p>
       Proin consequat viverra sapien, malesuada tempor tortor feugiat vitae.
@@ -49,5 +71,9 @@ addTemplate('header');
   </div>
 </main>
 <?php
-addTemplate('footer');
+
+  mysqli_close($db);
+
+  addTemplate('footer');
+
 ?>
