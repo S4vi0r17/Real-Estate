@@ -13,7 +13,7 @@ $id = $_GET["id"];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
 if (!$id) {
-    header("Location: /Real-Estate/admin/index.php");
+    header("Location: /admin/index.php");
 }
 
 var_dump($id);
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($resultado) {
             // echo "Insertado correctamente";
             // redireccionar al usuario
-            header("Location: /Real-Estate/admin/index.php?mensaje=2");
+            header("Location: /admin/index.php?mensaje=2");
         }
     }
 }

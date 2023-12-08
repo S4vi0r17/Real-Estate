@@ -26,7 +26,7 @@ $resultado = mysqli_query($db, $query);
         <div class="listing">
 
 
-            <img loading="lazy" src="/Real-Estate/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Listing" />
+            <img loading="lazy" src="/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Listing" />
 
             <div class="listing-content">
                 <h3><?php echo $propiedad['titulo']; ?></h3>

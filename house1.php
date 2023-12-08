@@ -5,7 +5,7 @@ $id = $_GET["id"];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
 if (!$id) {
-  header("Location: /Real-Estate/index.php");
+  header("Location: /index.php");
 }
 
 // Base de datos
@@ -18,7 +18,7 @@ $consulta = "SELECT * FROM propiedades WHERE id = {$id}";
 $resultado = mysqli_query($db, $consulta);
 
 if (!$resultado->num_rows) {
-  header("Location: /Real-Estate/index.php");
+  header("Location: /index.php");
 }
 
 $propiedad = mysqli_fetch_assoc($resultado); // Todo el contenido del registro
@@ -32,7 +32,7 @@ addTemplate('header');
 <main class="container section content-center">
   <h1><?php echo $propiedad["titulo"] ?></h1>
 
-  <img loading="lazy" src="/Real-Estate/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Property image" />
+  <img loading="lazy" src="/imagenes/<?php echo $propiedad['imagen']; ?>" alt="Property image" />
 
   <div class="property-summary">
     <p class="price"><?php echo $propiedad["precio"] ?></p>
