@@ -123,3 +123,5 @@ VALUES (
     );
 
 COMMIT;
+
+-- para importar: https://www.youtube.com/watch?v=jTs1nSwAcRM
