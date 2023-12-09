@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $resultado = mysqli_query($db, $consulta);
 
         if($resultado) {
-            header("Location: /Real-Estate/admin/index.php?mensaje=3");
+            header("Location: /admin/index.php?mensaje=3");
         }
     }
 }
@@ -68,7 +68,7 @@ addTemplate('header');
         
     <?php endif; ?>
 
-    <a href="/Real-Estate/admin/propiedades/crear.php" class="btn btn-green">Nueva propiedad</a>
+    <a href="/admin/propiedades/crear.php" class="btn btn-green">Nueva propiedad</a>
 
     <table class="propiedades">
         <thead>
@@ -87,7 +87,7 @@ addTemplate('header');
                 <tr>
                     <td><?php echo $propiedad["id"]; ?></td>
                     <td><?php echo $propiedad["titulo"]; ?></td>
-                    <td><img src="\Real-Estate\imagenes\<?php echo $propiedad["imagen"]; ?>" class="imagen-tabla" alt="img"></td>
+                    <td><img src="\imagenes\<?php echo $propiedad["imagen"]; ?>" class="imagen-tabla" alt="img"></td>
                     <td>$<?php echo $propiedad["precio"]; ?></td>
                     <td>
                         <form action="" method="post">
@@ -96,7 +96,7 @@ addTemplate('header');
 
                         </form>
                         <a 
-                        href="/Real-Estate/admin/propiedades/actualizar.php?id=<?php echo $propiedad["id"]; ?>" 
+                        href="/admin/propiedades/actualizar.php?id=<?php echo $propiedad["id"]; ?>" 
                         class="btn-green-block">Actualizar</a>
                     </td>
                 <?php endwhile; ?>

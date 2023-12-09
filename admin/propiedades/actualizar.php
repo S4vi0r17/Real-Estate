@@ -190,7 +190,7 @@ addTemplate('header');
         </div>
     <?php endforeach; ?>
 
-    <a href="/Real-Estate/admin/index.php" class="btn btn-green">Volver</a>
+    <a href="/admin/index.php" class="btn btn-green">Volver</a>
     <!-- enctype="multipart/form-data" para archivos -->
     <form method="POST" class="form" enctype="multipart/form-data">
         <fieldset>
@@ -205,7 +205,7 @@ addTemplate('header');
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" accept="image/jpeg, image/png" name="imagen">
 
-            <img class="imagen-update" src="/Real-Estate/imagenes/<?php echo $imagenPropiedad; ?>" alt="Imagen de la propiedad" class="imagen-small">
+            <img class="imagen-update" src="/imagenes/<?php echo $imagenPropiedad; ?>" alt="Imagen de la propiedad" class="imagen-small">
 
             <label for="descripcion">Descripcion:</label>
             <textarea name="descripcion" id="descripcion" cols="30" rows="10"><?php echo $descripcion; ?></textarea>

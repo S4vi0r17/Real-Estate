@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($resultado) {
             // echo "Insertado correctamente";
             // redireccionar al usuario
-            header("Location: /Real-Estate/admin/index.php?mensaje=1");
+            header("Location: /admin/index.php?mensaje=1");
         }
     }
 }
@@ -146,9 +146,9 @@ addTemplate('header');
         </div>
     <?php endforeach; ?>
 
-    <a href="/Real-Estate/admin/index.php" class="btn btn-green">Volver</a>
+    <a href="/admin/index.php" class="btn btn-green">Volver</a>
     <!-- enctype="multipart/form-data" para archivos -->
-    <form method="POST" action="/Real-Estate/admin/propiedades/crear.php" class="form" enctype="multipart/form-data">
+    <form method="POST" action="/admin/propiedades/crear.php" class="form" enctype="multipart/form-data">
         <fieldset>
             <legend>Informacion General</legend>
 
